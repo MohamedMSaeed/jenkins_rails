@@ -1,11 +1,11 @@
-pipeline {
-    agent all
-    stages {
-        stage("Build and start test image") {
-            steps {
-                sh "ls"
 
+pipeline {
+    agent any 
+    stages {
+        stage('Docker Compose up ') { 
+            steps {
+                sh '''/usr/bin/docker-compose up'''
             }
         }
-    }
-}
+
+}}
