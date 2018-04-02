@@ -1,0 +1,38 @@
+<h1>Orders</h1>
+<%= link_to 'New Order', new_order_path, class: "btn btn-default add" ,:style => 'color: white; position:relative; left:600px; bottom:50px;'%>
+<table>
+  <thead>
+    <tr>
+      <th width="100px">Meal</th>
+      <th width="100px">Resturant</th>
+      <!--<th>Image</th>-->
+      <th width="100px">Status</th>
+      <!--<th>User</th>-->
+      <th colspan="4" width="200px">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td ><%= order.meal %></td>
+        <td><%= order.resturant %></td>
+        <!--<td><%= order.image %></td>-->
+        <td id= "st<%= order.id %>" ><%= order.status %></td>
+        <!--<td><%= order.user.username %></td>-->
+        <td><%= link_to 'Show', order %></td>
+        <% if order.status == "waiting" %>
+        <td><button onclick="finish_order(this)" id= <%= order.id %> >Finish</button></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <% end %>
+        <td><%= link_to 'Delete', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+
+
+<%= javascript_include_tag('channels/orders.js') %>
+<%= stylesheet_link_tag "add_friend" %>

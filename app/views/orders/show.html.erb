@@ -1,0 +1,67 @@
+<div  class="container-fluid">
+
+  <div class="row">
+  <div class="col-md-11">
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Comment</th>
+<th>Delete</th>
+      </tr>
+    </thead>
+ <tbody id="orders">
+    <% @order.order_details.each do |o| %>
+      <tr>
+
+        <td><%= o.item %></td>
+        <td><%= o.amount %></td>
+        <td><%= o.price %></td>
+        <td><%= o.comment %></td>
+        <% if @order.status == "waiting" %>
+<td>    <%= link_to 'Destroy', o, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'delete_od' %> </td>
+      </tr>
+    <% end %>
+
+    <% end %>
+  </tbody>
+  </table>
+  </div>
+  </div>
+
+<table><tr>
+        <td><input type="text" placeholder='item' id="item"></td>
+        <td><input type="number" placeholder='amount' id="amount"></td>
+      	<td><input type="number" placeholder='price' id="price"></td>
+        <td><input type="text" placeholder='comment' id="comment"></td>
+        <% if @order.status == "waiting" %>
+          <td><button onclick="add(this)" class="addOrder" uid="<%= current_user.id %>" oid="<%= params[:id] %>" > Add Order</button></td>
+        <% else%>
+          <td>Finished</td>
+        <% end%>
+
+</tr>
+    </table>
+
+
+</div>
+ <button onclick="showInvited(this)" class="invite" uid="<%= current_user.id %>" oid="<%= params[:id] %>" > show invited friends to this order</button>
+<button onclick="showJoined(this)" class="join" uid="<%= current_user.id %>" oid="<%= params[:id] %>" > show joined friends to this order</button>
+<button onclick="hideMe()">hide</button>
+<h5>invited:</h5>
+<div id="invited">
+</div>
+<hr>
+
+<h5>joined:</h5>
+<div id="joined">
+</div>
+</div>
+
+
+<div>
+  <h3>Menu: </h3>
+  <%= image_tag(@order.image.url, alt: 'Image') if @order.image? %>
+</div>

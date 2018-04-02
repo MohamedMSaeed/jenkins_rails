@@ -1,0 +1,67 @@
+<div class="row center-block" style="padding-left: 30px">
+  <div class="col-md-5">
+    <%= form_with(model: order, local: true) do |form| %>
+      <% if order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+          <ul>
+          <% order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :Meal %>
+        <%= form.text_field :meal, id: :order_meal %>
+      </div>
+
+      <div class="field">
+        <%= form.label :resturant %>
+        <%= form.text_field :resturant, id: :order_resturant %>
+      </div>
+
+      <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image, id: :order_image %>
+      </div>
+
+      <div class="field">
+        <%= form.hidden_field :status, id: :order_status, value: :'waiting' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :friends %>
+        <%= form.text_field :friends, id: :order_friends %>
+        <button type="button" onclick="addToInvite()">Add To Invite</button>
+      </div>
+
+      <div class="field">
+        <%= form.label :group %>
+        <%= form.text_field :group, id: :order_group %>
+        <button type="button" onclick="addGroupToInvite()">Add To Invite</button>
+      </div>
+
+      <!--<div class="field">-->
+        <%= form.hidden_field :user_id, id: :user_id %>
+         <!--form.hidden_field :friendsList, id: :friendsList %>-->
+      <!--</div>-->
+
+      <div class="actions">
+        <!--<button type="submit">do it</button>-->
+        <%= form.submit id: "createOrder"%>
+      </div>
+    <% end %>
+  </div>
+
+
+
+  <div class="col-md-4" style="border: solid black; height: 350px" id="invited_to_order">
+    <h4 style="padding-top: 10px">Invited Friends</h4>
+    <hr>
+  </div>
+</div>
+
+<%= javascript_include_tag('invite_friend.js') %>

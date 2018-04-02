@@ -1,0 +1,36 @@
+<h1>Friends</h1>
+
+
+  <div id="add">
+ <label>Your friend email:</label>
+ <input id="add_friend" style="background: white; border: #777777 solid"></input>
+ <button class='add'  onclick="addFriendToList()"> Add friend </button>
+  </div>
+
+<div  id="friends_list" >
+   <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+      <fieldset style="height: 330px; background-color: white; padding-top: 10px">
+      <legend  style="background-color: white">Friend List</legend>
+        <div  id="friendlist">
+          <% @friendships.each do |friendship| %>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+              <%= image_tag(friendship.friend.image.thumb.url, alt: 'Image') if friendship.friend.image? %>
+              <%= friendship.friend.username%>
+              <%= link_to 'Unfriend', friendship, method: :delete, data: { confirm: 'Are you sure?' } ,:remote =>true , :class => 'my-link' %>
+              <br />
+              <br />
+              <br />
+            </div>
+          <% end %>
+      </div>
+      </fieldset>
+</div>
+</div>
+</div>
+
+<%= javascript_include_tag('add_friend_to_list.js') %>
+<%= stylesheet_link_tag "add_friend" %>
+
+
+<!-- <%= link_to 'New Friendship', new_friendship_path %> -->

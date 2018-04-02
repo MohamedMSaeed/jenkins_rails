@@ -1,0 +1,49 @@
+<h1>Groups</h1>
+
+<div>
+  <div class="center-block center">
+    <div>
+      <input type="text" id="add_group" style="width: 50%; background: white; border: black solid" >
+      <button id="add" class="add" onclick="addGroup(this)" >New Group </button>
+    </div>
+  </div><br><br>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" style="border: solid black; height: 350px; overflow-y: scroll">
+      <table class=" ">
+        <col width="150">
+        <tbody id="groupTable">
+          <% @groups.each do |group| %>
+            <tr style="height: 40px" >
+              <td><p style="display:inline" onclick ="displayGpMember(this)" class='grpName' gid="<%= group.id %>"><%= group.name %></p></td>
+              <!-- <td><% group.user.id %></td> -->
+              <!-- <td><% group.id %></td> -->
+              <!-- <td><% link_to 'Show', group %></td> -->
+              <td><%= link_to 'Edit', edit_group_path(group) %></td>
+              <td><%= link_to group, method: :delete ,data: { confirm: 'Are you sure?' } ,:remote =>true, :class => 'gp-link'  do %>
+                  <i class="fa fa-times-circle"></i>
+                <% end %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-6" style="border: solid black; height: 350px; overflow-y: scroll; float: right">
+      <div  id="display_group" >
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <legend >Friend List</legend>
+            <fieldset style="height: 330px; padding-top: 10px">
+              <div  id="frindlist">
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= stylesheet_link_tag "add_friend" %>

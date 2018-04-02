@@ -1,0 +1,93 @@
+
+<!-- Custom stlylesheet -->
+<!--<link type="text/css" rel="stylesheet" href="css/style.css" />-->
+<%= stylesheet_link_tag "start.css" %>
+
+<!-- Magnific Popup -->
+<!--<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />-->
+<%= stylesheet_link_tag "magnific-popup.css" %>
+<!-- Font Awesome Icon -->
+<!--<link rel="stylesheet" href="css/font-awesome.min.css">--
+
+<!-- Owl Carousel -->
+<!--<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />-->
+<!--<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />-->
+<%= stylesheet_link_tag "owl.carousel.css" %>
+<%= stylesheet_link_tag "owl.theme.default.css" %>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+<!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+<![endif]-->
+
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+<!-- Header -->
+<header id="home">
+  <!-- Background Image -->
+  <div class="bg-img start">
+    <div class="overlayS"></div>
+  </div>
+  <!-- /Background Image -->
+
+  <!-- Nav -->
+  <nav id="nav" class="navbar nav-transparent">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- Logo -->
+        <div class="main-nav nav navbar-nav">
+          <a class="navbar-brand main-nav" href="/" style="color: white">YalaNotlob</a>
+        </div>
+        <!-- /Logo -->
+      </div>
+
+      <!--  Main navigation  -->
+      <ul class="main-nav nav navbar-nav navbar-right">
+        <!--<ul class="nav navbar-nav navbar-right">-->
+          <li><%= link_to  user_session_path do %>
+              <i class="glyphicon glyphicon-log-in"></i> Sign in
+            <% end %>
+          </li>
+          <li><%= link_to  new_user_registration_path do %>
+              <i class="glyphicon glyphicon-user"></i> Sign up
+            <% end %>
+          </li>
+        <!--</ul>-->
+      </ul>
+      <!-- /Main navigation -->
+
+    </div>
+  </nav>
+  <!-- /Nav -->
+
+  <!-- home wrapper -->
+  <div class="home-wrapper">
+    <div class="container">
+      <div class="row">
+
+        <!-- home content -->
+        <div class="col-md-10 col-md-offset-1">
+          <div class="home-content">
+            <h1 class="white-text">yallanotlob</h1>
+            <p class="white-text">We will make it easier for you and your friends to gather the order. No need for papers anymore!
+            </p>
+              <%= link_to  new_user_registration_path do %>
+                <i class="btn white-btn login">Sign up</i>
+              <% end %>
+              <%= link_to  user_session_path do %>
+                <i class="btn main-btn login">Sign in</i>
+                <% end %>
+          </div>
+        </div>
+        <!-- /home content -->
+
+      </div>
+    </div>
+  </div>
+  <!-- /home wrapper -->
+
+</header>

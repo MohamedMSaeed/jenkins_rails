@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yallanotlob</title>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+ 
+
+    <%= javascript_include_tag 'application',  'data-turbolinks-track': 'reload' %>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+  </head>
+
+  <body>
+   <!--Background Image-->
+  <div class="bg-img home">
+    <div class="overlay"></div>
+  </div>
+   <!--/Background Image-->
+
+  <!--  Main navigation  -->
+  <!--<div style="color: #0b0b0b">-->
+  <nav id="nav" class="navbar nav-transparent"  style="font-size:60px;">
+    <div class="container">
+    <ul class="main-nav nav navbar-nav navbar-right">
+    </ul>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">YalaNotlob</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/" style="color:#3377ba;"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+    </ul>
+    <% if current_user %>
+      <ul class="nav navbar-nav">
+        <li><%= link_to  friendships_path(current_user) , method: :get do %>
+            <i class="fa fa-list-alt"></i> Friends
+          <% end %>
+        </li>
+        <li><%= link_to  groups_path(current_user) , method: :get do %>
+            <i class="fa fa-users"></i> Groups
+          <% end %>
+        </li>
+        <li><%= link_to  orders_path(current_user) , method: :get do %>
+            <i class="fa fa-list-alt"></i> Orders
+          <% end %>
+        </li>
+<li class="panel-body hidden" id="messages">
+
+<!-- notification -->
+
+<!-- end of notification -->
+    
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <div class="nav navbar-nav">
+          <li class="dropdown" style="width: 300px">
+            <button class="dropbtn" style="color:#3377ba;"><i class="glyphicon glyphicon-bell"></i>Notification</button>
+            <ul class="dropdown-content" id="dropdowncontent" style="width: 300px">
+   <!-- fe code notification hena-->
+              <br><br>
+              <% @invitations.each do |invite| %>
+                <%= invite.order.user.username %> invited you to his <%= link_to 'Order', order_path(invite.order) %>
+                <% if invite.status == "invited" %>
+                  <% if invite.order.status == "waiting" %>
+                    <button onclick="join(event)" id="<%= invite.id %>">Join</button><br><br>
+                  <% else %>
+                    and he finished it :D <br><br>
+                  <% end %>
+                <% else %>
+                  and you joined!<br><br>
+                <% end %>
+              <% end %>
+            </ul>
+          </li>
+          <li><%= link_to  user_path(current_user) , method: :get do%>
+              <!-- <i class="glyphicon glyphicon-user"></i> -->
+              <div class = "style_user"> <%= image_tag(current_user.image.small_thumb.url, alt: 'Image') if current_user.image?%>
+               <%= current_user.username %>
+             </div>
+            <% end %>
+          </li>
+          <li><%= link_to  destroy_user_session_path , method: :delete do%>
+              <i class="glyphicon glyphicon-log-in"></i> Logout
+            <% end %>
+          </li>
+        </div>
+      </ul>
+    <% end %>
+    </div>
+  </nav>
+  <!--</div>-->
+  <!-- /Main navigation -->
+
+
+  <!--My nav-->
+  <!--<nav class="navbar navbar-default">-->
+    <!--<div class="container-fluid">-->
+
+    <!--</div>-->
+  <!--</nav>-->
+  <!--My nav-->
+
+  <%= yield %>
+  <%= javascript_include_tag "display_groupMember" %>
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "addOrder" %>
+
+
+  </body>
+</html>

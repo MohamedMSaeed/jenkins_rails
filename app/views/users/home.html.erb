@@ -1,0 +1,55 @@
+<!-- About -->
+<!--<div id="about" class="section ">-->
+
+  <!-- Container -->
+  <div class="container">
+
+    <!-- Row -->
+    <div class="row">
+
+      <!-- Section header -->
+      <div class="section-header text-center">
+        <h2 class="title">Welcome to YallaNotlob</h2>
+      </div>
+      <!-- /Section header -->
+
+      <!-- about -->
+      <div class="col-md-5" style="border: solid black; height: 350px; overflow-y: scroll">
+        <h4 style="padding-top: 10px">Last Orders</h4>
+        <hr>
+        <ul style="height: 250px; font-size: 15px">
+        <% @orders.each do |order| %>
+          <li style="font-size: 15px"><%= link_to order.meal, order_path(order)  %> created <%= time_ago_in_words(order.created_at) %> ago</li>
+        <% end %>
+        </ul>
+
+
+      </div>
+      <!-- /about -->
+
+      <!-- about -->
+      <div class="col-md-5" style="border: solid black; height: 350px; overflow-y: scroll;float: right" id="friends_activities">
+        <h4 style="padding-top: 10px">Friends Activities</h4>
+        <hr>
+
+        <ul>
+
+        <% @invited.each do |event| %>
+            <li style="font-size: 15px"><%=  event.order.user.username %> invited you to <%= link_to 'order', order_url(event.order) %> from <%=	 event.order.resturant %><br></li>
+        <%	 end %>
+
+        </ul>
+      </div>
+      <!-- /about -->
+
+
+    </div>
+    <!-- /Row -->
+
+  </div>
+  <!-- /Container -->
+
+<!--</div>-->
+<!-- /About -->
+
+<%= javascript_include_tag('home.js') %>

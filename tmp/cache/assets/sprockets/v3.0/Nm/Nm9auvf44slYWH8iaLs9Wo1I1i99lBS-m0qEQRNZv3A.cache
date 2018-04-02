@@ -1,0 +1,13 @@
+I"J(function() {
+  App.order = App.cable.subscriptions.create("OrderChannel", {
+    connected: function() {},
+    disconnected: function() {},
+    received: function(data) {
+      console.log(data['order']);
+      console.log(data['createdby']);
+      return $("#friends_activities").append('<p>hi</p>');
+    }
+  });
+
+}).call(this);
+:ET

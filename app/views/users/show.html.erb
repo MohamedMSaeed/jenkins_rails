@@ -1,0 +1,106 @@
+
+<p id="notice"><%= notice %></p>
+
+<!-- <p>Image: </p> -->
+<p>
+  <%= image_tag(@user.image.thumb.url, alt: 'Image') if @user.image? %>
+  <%= link_to 'Edit profile', edit_user_path(@user) ,{:class => 'linky' ,:style => 'color:white;' }%> 
+  <%= link_to "Add friend", friendships_path(current_user) ,{:class => 'add_link' , :style => 'color:white;'}%>
+</p>
+
+<p>
+  <!-- <strong>Username:</strong> -->
+  <strong> <font size="18px;" color="#777777"> <%= @user.username %> </font></strong>
+</p>
+<br><br><br><br><br><br>
+<div>
+   <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+      <fieldset style="height: 330px; background-color: white; ">
+      <legend  style="background-color: white;border-color: #00ccFF;"><h2>                                          
+        <p><font size="6px;" color="#3377ba"> <i class="fa fa-users"></i>Friends:</font></p></h2> </legend>
+
+        <% for friendship in @user.friendships %>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+               <%= image_tag(friendship.friend.image.thumb.url, alt: 'Image') if friendship.friend.image? %>
+               <%=h friendship.friend.username %>
+              (<%= link_to "Unfriend", friendship, :method => :delete %>)
+            <br />
+            <br />
+            <br />
+          </div>
+          <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div>
+
+<br />
+<br />
+<!-- <div>
+   <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+      <fieldset style="height: 330px; background-color: white; padding-top: 10px">
+      <legend  style="background-color: white"><h2>Friended by: </h2></legend>
+          <% for user in @user.inverse_friends %>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+            <%= image_tag(user.image.thumb.url, alt: 'Image') if user.image? %>
+            <%=h user.username %>
+            <br />
+            <br />
+            <br />
+          </div>
+          <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div> -->
+<!--   <br />
+  <br />
+<h2>groups</h2>
+ <br>
+ <br />
+<%= link_to "show group", groups_path %>
+  <br>
+ <br />
+<div class="col-md-12">
+  <%= form_for @group, remote: true, :html => { class: 'form-horizontal', role: 'form' } do |f| %>
+    <% if @group.errors.any? %>
+      <div class="panel panel-danger col-md-offset-1">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <%= pluralize(@group.errors.count,"error") %>
+            prohibited this group from being created
+          </h2>
+          <div class="panel-body">
+            <ul>
+              <% @group.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= f.label :body, "New group" %>
+      </div>
+      <div class="col-md-10">
+        <%= f.text_field :name, rows: 10, class: 'form-control', placeholder: 'group name' %>
+<%= f.hidden_field :user_id, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <%= f.submit "Add group", class: 'btn btn-primary btn-lg pull-right' %>
+      </div>
+    </div>
+  <% end %>
+</div> -->
+
+
+<p style="font-size: 22px;"><i class="fa fa-backward" aria-hidden="true"></i><%= link_to 'BackHome', root_path ,{:style => 'color: #3377ba;' , :class => "back"} %></p>
+<%= stylesheet_link_tag "profile" %>
+<%= javascript_include_tag "jquery" %>
+

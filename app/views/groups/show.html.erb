@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @group.name %>
+</p>
+<p>
+ <ul>
+<% if @group.user.friendships.any? %>
+  <% for friendship in @group.user.friendships %>
+    <li>
+      <%=h friendship.friend.username %>
+      <%= link_to "Add as a group member", group_members_path(:user_id => friendship.friend ,:group_id => @group), :method => :post %>
+   </li>
+  <% end %>
+
+<% else %>
+<p>you've no friends</p>
+<% end %>
+</ul>
+</p>
+
+<p>
+  <strong>group members:</strong>
+  <% if @group.group_members.any? %>
+  <% for gm in @group.group_members %>
+    <li>
+      <%=h gm.user.username %>
+      <%= link_to "remove from group",group_member_url(gm), :method => :delete, data: { confirm: 'Are you sure?' } %>
+   </li>
+<% end %>
+<% end %>
+</p>
+  <strong>User:</strong>
+  <%= @group.user %>
+</p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>

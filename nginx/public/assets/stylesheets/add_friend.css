@@ -1,0 +1,39 @@
+h1, #friends_list{
+	margin-left: 50px;
+	font-family: sans-serif;
+	font-style: bold;
+}
+.add{
+	background-color: #3377ba;
+	border-radius: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+
+}
+.add:hover{
+	  border:none;
+  outline:none;
+  text-decoration:none;
+  color:inherit;
+  background-color: #3377ba;
+}
+#add{
+	/*margin-top: 50px; */
+	font-size: 22px;
+	text-align: center;
+}
+
+#friends_list{
+	padding: 50px;
+	margin-right: 50px; 
+}
+legend{
+	font-size: 22px;
+	border-color: #3377ba;
+}
+fieldset{
+	overflow: auto; 
+}

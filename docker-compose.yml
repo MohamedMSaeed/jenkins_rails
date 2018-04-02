@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: myapp
+      MYSQL_USER: myapp
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: password
+  app:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_NAME: myapp
+      DB_HOST: db
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: DockerFile
+    image: nginx
+    links:
+      - app
+    ports:
+      - "8080:80"
+
+

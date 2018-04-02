@@ -1,0 +1,14 @@
+I"H(function() {
+  App.order = App.cable.subscriptions.create("OrderChannel", {
+    connected: function() {},
+    disconnected: function() {},
+    received: function(data) {
+      console.log(data['invitation'].order_id);
+      console.log(data['invitation']);
+      alert("You have an invitation!");
+      return $("#dropdowncontent").append(data['createdby'].username + ' invited you to his ' + '<\a href="/orders/' + data['order'].id + '">Order<\/a>' + '<button onclick="console.log("hamada")" id=" ' + data['invitation'].id + '">Join<\/button><br><br>');
+    }
+  });
+
+}).call(this);
+:ET
