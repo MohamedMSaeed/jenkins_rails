@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage("Build and start test image") {
             steps {
-                sh "echo "hi""
                 sh "ls"
 
             }
