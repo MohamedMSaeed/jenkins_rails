@@ -30,6 +30,6 @@ services:
     links:
       - app
     ports:
-      - "8080:80"
+      - "8888:80"
 
 
